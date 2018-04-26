@@ -11,9 +11,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "cn.xiaolong.ticketsystem"
+        applicationId "cn.lsh.tick"
         minSdkVersion 16
         targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
 
         buildConfigField("String", "TICKET_SECRET", TICKET_SECRET)
         buildConfigField("String", "TICKET_APP_ID", TICKET_APP_ID)
@@ -72,7 +75,7 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             // 移除无用的resource文件
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

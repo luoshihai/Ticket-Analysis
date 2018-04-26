@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.xiaolong.ticketsystem.ui.widget.FocuseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlBottom"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
-    android:descendantFocusability="blocksDescendants"
-    android:paddingBottom="30px"
-    android:paddingLeft="40px"
-    android:paddingRight="40px"
-    android:paddingTop="30px">
+<cn.lsh.tick.ui.widget.FocuseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                            android:id="@+id/rlBottom"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="?selectableItemBackground"
+                                            android:descendantFocusability="blocksDescendants"
+                                            android:paddingBottom="30px"
+                                            android:paddingLeft="40px"
+                                            android:paddingRight="40px"
+                                            android:paddingTop="30px">
 
 
     <TextView
@@ -51,4 +51,4 @@
         android:layout_marginTop="8px"
         android:src="@drawable/ic_narrow_right" />
 
-</cn.xiaolong.ticketsystem.ui.widget.FocuseRelativeLayout>
+</cn.lsh.tick.ui.widget.FocuseRelativeLayout>
