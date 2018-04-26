@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.lsh.tick">
+          package="cn.lsh.tick">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
-        android:name="cn.lsh.tick.base.App"
+        android:name=".base.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
-        <activity android:name="cn.lsh.tick.ui.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.MainActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
-        <activity android:name="cn.lsh.tick.ui.follow.FollowAddActivity" />
-        <activity android:name="cn.lsh.tick.ui.follow.FollowSortActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.AverageSimulateActivity" />
-        <activity android:name="cn.lsh.tick.ui.OpenResultActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.ParityTrendActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.AvgAnalysisActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.SumAnalysisActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.CodeRateActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.CodeGenerateActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.CodeBaseSelectActivity" />
-        <activity android:name="cn.lsh.tick.ui.trendanalysis.CodeForecastActivity" />
-        <activity android:name="cn.lsh.tick.ui.web.WebActivity" />
+        <activity android:name=".ui.follow.FollowAddActivity"/>
+        <activity android:name=".ui.follow.FollowSortActivity"/>
+        <activity android:name=".ui.trendanalysis.AverageSimulateActivity"/>
+        <activity android:name=".ui.OpenResultActivity"/>
+        <activity android:name=".ui.trendanalysis.ParityTrendActivity"/>
+        <activity android:name=".ui.trendanalysis.AvgAnalysisActivity"/>
+        <activity android:name=".ui.trendanalysis.SumAnalysisActivity"/>
+        <activity android:name=".ui.trendanalysis.CodeRateActivity"/>
+        <activity android:name=".ui.trendanalysis.CodeGenerateActivity"/>
+        <activity android:name=".ui.trendanalysis.CodeBaseSelectActivity"/>
+        <activity android:name=".ui.trendanalysis.CodeForecastActivity"/>
+        <activity android:name=".ui.web.WebActivity"/>
         <activity
-            android:name="cn.lsh.tick.ui.HistoryActivity"
-            android:launchMode="singleTask" />
+            android:name=".ui.HistoryActivity"
+            android:launchMode="singleTask"/>
 
         <meta-data
             android:name="design_width"
-            android:value="1080" />
+            android:value="1080"/>
         <meta-data
             android:name="design_height"
-            android:value="1920" />
-    </application>
+            android:value="1920"/>
 
+        <activity android:name=".ui.EmptyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

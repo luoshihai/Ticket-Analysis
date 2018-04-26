@@ -9,7 +9,25 @@ package com.lsh.packagelibrary;
 
 public class ResultBean {
     private String data;
+    private String errmsg;
     private boolean jump;
+    private int errno;
+
+    public String getErrmsg() {
+        return errmsg;
+    }
+
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
+    }
+
+    public int getErrno() {
+        return errno;
+    }
+
+    public void setErrno(int errno) {
+        this.errno = errno;
+    }
 
     public String getData() {
         return data;

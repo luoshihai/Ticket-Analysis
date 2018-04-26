@@ -7,13 +7,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -21,6 +21,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 
+import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
@@ -39,30 +40,38 @@ import okhttp3.OkHttpClient;
  * Date: 2018/4/26
  */
 
-public abstract class TempActivity extends AppCompatActivity {
+public abstract class TempActivity extends CordovaActivity {
     private CordovaWebView cordWebView;
-
+//    Theme.AppCompat.NoActionBar
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_AppCompat_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temp);
         cordWebView = (CordovaWebView) findViewById(R.id.cordovaview);
         initCachePath();
         initPre();
-        checkOpen();
         initCordWebView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkOpen();
+
     }
 
     private void checkOpen() {
         OkHttpUtils
                 .post()
                 .url(getUrl())
-                .addParams("order_id", getAppId() + "")
+                .addParams("order_id", getAppId()+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        startJump();
+//                        startJump();
+                        Toast.makeText(TempActivity.this, "失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -78,14 +87,12 @@ public abstract class TempActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             startJump();
                         }
+//                        loadUrl("http://m.luoshihai.top");
                     }
                 });
     }
 
-    private void startJump() {
-        startActivity(new Intent(TempActivity.this, getTargetActivity()));
-        finish();
-    }
+    public abstract void startJump();
 
     private void initPre() {
         CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
@@ -97,7 +104,6 @@ public abstract class TempActivity extends AppCompatActivity {
         OkHttpUtils.initClient(okHttpClient);
     }
 
-    public abstract Class<Activity> getTargetActivity();
 
     public abstract int getAppId();
 
@@ -146,13 +152,31 @@ public abstract class TempActivity extends AppCompatActivity {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 Log.e("log", "WebViewActivity WebResourceResponse 21以上");
-//                String url = request.getUrl().toString();
-//                WebResourceResponse response = mFiles.getWebResourceResponse(url, cachePath, filePath);
-//                if (response != null) return response;
-                //Log.e("log", "未使用缓存>>>");
+                String url = request.getUrl().toString();
+
                 return super.shouldInterceptRequest(view, request);
             }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(final WebView view, String url) {
+
+                if (url.contains("platformapi/startapp")) {
+                    startAlipayActivity(url);
+                    // android  6.0 两种方式获取intent都可以跳转支付宝成功,7.1测试不成功
+                } else if ((Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
+                        && (url.contains("platformapi") && url.contains("startapp"))) {
+                    startAlipayActivity(url);
+                } else {
+                    cordWebView.loadUrl(url);
+                }
+                return true;
+            }
+
         });
+
+
+
+
 
         //获取缓存文件夹
         //String cachepath = getCacheDirectory(this, "").getAbsolutePath();
@@ -179,20 +203,36 @@ public abstract class TempActivity extends AppCompatActivity {
         cordWebView.getSettings().setLoadWithOverviewMode(true);
         cordWebView.getSettings().setUseWideViewPort(true);
 
-        //注册监听WebView页面的js方法
-//        cordWebView.addJavascriptInterface(new JsToJavaAPI(), "androidAPI");
-//        boolean b = initPageUrl(href, WebViewActivity.this);
-//        String ck = (String) SharedPreferencesUtils.getParam(getActivity(), "cookie", "");
-//        Log.w("ckkkkkk", ck);
-//        if (!TextUtils.isEmpty(ck)) {
-//            synchronousWebCookies(this, href, ck);
-//        }
-//        loadUrl(href);
+//        loadUrl("http://m.luoshihai.top");
+
+    }
+
+    // 调起支付宝并跳转到指定页面
+    private void startAlipayActivity(String url) {
+        Intent intent;
+        try {
+            intent = Intent.parseUri(url,
+                    Intent.URI_INTENT_SCHEME);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setComponent(null);
+            startActivity(intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (cordWebView.pluginManager != null) {
+            cordWebView.pluginManager.onDestroy();
+        }
+        cordWebView.handleDestroy();
+        super.onDestroy();
 
     }
 
     public void loadUrl(String url) {
-        Log.e("log", "WebViewActivity loadUrl:" + url);
         cordWebView.loadUrl(url);
     }
 
