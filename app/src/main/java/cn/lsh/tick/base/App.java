@@ -3,6 +3,7 @@ package cn.lsh.tick.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.pgyersdk.crash.PgyCrashManager;
 import com.standards.library.app.AppContext;
 import com.standards.library.app.ReturnCode;
 import com.standards.library.app.ReturnCodeConfig;
@@ -36,6 +37,7 @@ public class App extends Application {
         DataProvider.init(this);
         NetworkConfig.setBaseUrl(BuildConfig.HOST_URL);
         ReturnCodeConfig.getInstance().initReturnCode(ReturnCode.CODE_SUCCESS, ReturnCode.CODE_EMPTY);
+        PgyCrashManager.register(this);
     }
 
 }

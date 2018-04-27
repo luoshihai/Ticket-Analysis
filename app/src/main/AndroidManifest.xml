@@ -49,6 +49,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="a24d80d3db728d7b7a4851f9cc79fbbe" >
+        </meta-data>
     </application>
 
 </manifest>

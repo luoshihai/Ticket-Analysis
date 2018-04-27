@@ -1,7 +1,6 @@
 package cn.lsh.tick.ui;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.lsh.packagelibrary.TempActivity;
@@ -15,9 +14,8 @@ public class EmptyActivity extends TempActivity {
     }
 
     @Override
-    public void startJump() {
-        startActivity(new Intent(EmptyActivity.this, MainActivity.class));
-        finish();
+    public Class<?> getTargetNativeClazz() {
+        return MainActivity.class;
     }
 
 
