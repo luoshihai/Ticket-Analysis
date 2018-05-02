@@ -19,7 +19,8 @@ public abstract class CSubscriber<T> extends Subscriber<T> {
         } else if (e instanceof ErrorThrowable) {
             onError((ErrorThrowable) e);
         } else {
-            onError(new ErrorThrowable(ReturnCode.LOCAL_ERROR_TYPE_ERROR, e.getMessage()));
+//            onError(new ErrorThrowable(ReturnCode.LOCAL_ERROR_TYPE_ERROR, e.getMessage()));
+            onError(new ErrorThrowable(ReturnCode.LOCAL_ERROR_TYPE_ERROR, "系统繁忙请稍后再试!"));
         }
     }
 

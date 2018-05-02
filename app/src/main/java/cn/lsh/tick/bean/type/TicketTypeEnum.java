@@ -11,7 +11,8 @@ import java.io.Serializable;
 
 public enum TicketTypeEnum implements Serializable {
 
-    Follow("关注"), Country("全国"), Area("地方"), Out("境外"), High("高频");
+     Area("地方"), Out("低频"), High("高频");
+//    ,Follow("关注");
 
     private String value;
 

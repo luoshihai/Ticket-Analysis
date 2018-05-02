@@ -5,7 +5,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-
 import com.standards.library.util.TimeUtils;
 
 import cn.lsh.tick.R;
@@ -91,6 +90,10 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
             tvTitle.setText(mTicketOpenData.name);
             mPresenter.getSingleOpenResult(mTicketType.code, mTicketOpenData.expect);
         }
+//        else {
+//            findViewById(R.id.tvNumberForecast).setOnClickListener(v -> Toast.makeText(OpenResultActivity.this, "该类型不支持号码预测", Toast.LENGTH_SHORT).show());
+//            findViewById(R.id.tvRandomNum).setOnClickListener(v -> Toast.makeText(OpenResultActivity.this, "该类型不支持随机摇号", Toast.LENGTH_SHORT).show());
+//        }
     }
 
     @Override

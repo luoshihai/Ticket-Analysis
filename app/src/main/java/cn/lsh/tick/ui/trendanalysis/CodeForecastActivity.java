@@ -148,7 +148,10 @@ public class CodeForecastActivity extends BaseTitleBarActivity<ParityTrendPresen
         String result = "";
         for (int i = 0; i < dataAvg.size(); i++) {
             for (int j = 0; j < dataAvg.get(i).size(); j++) {
-                result += Math.round(dataAvg.get(i).get(j) + mCodeAvgList.get(i).get(j)) / 2 + ",";
+                try {
+                    result += Math.round(dataAvg.get(i).get(j) + mCodeAvgList.get(i).get(j)) / 2 + ",";
+                } catch (Exception e) {
+                }
             }
             result.substring(0,result.length()-1);
             result+="+";

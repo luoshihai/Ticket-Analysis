@@ -77,6 +77,9 @@ public class NumberAvgRunnable implements Runnable {
             }
         } else {
             for (int i = 0; i < mRegulars.length; i++) {
+                if (codeAvgList.size() <= i) {
+                    codeAvgList.add(new ArrayList<>());
+                }
                 String[] codeDis = mCodeDis[i].split("-");
                 for (int j = 0; j < Integer.valueOf(mRegulars[i]); j++) {
                     codeAvgList.get(i).add((Double.valueOf(codeDis[1]) + Double.valueOf(codeDis[0])) / 2);

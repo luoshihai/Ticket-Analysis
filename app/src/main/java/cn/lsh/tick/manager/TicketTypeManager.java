@@ -36,12 +36,12 @@ public class TicketTypeManager extends BaseGroupListManager<TicketType> {
 //                    .getAllData()
 //                    .flatMap(ticketTypes -> translateToListData(ticketTypes));
 //        }
-        if (mTicketTypeEnum == TicketTypeEnum.Country) {
-            return TicketTypeDataManager
-                    .getTicketDataManager()
-                    .getCountryData()
-                    .flatMap(ticketTypes -> translateToListData(ticketTypes));
-        }
+//        if (mTicketTypeEnum == TicketTypeEnum.Country) {
+//            return TicketTypeDataManager
+//                    .getTicketDataManager()
+//                    .getCountryData()
+//                    .flatMap(ticketTypes -> translateToListData(ticketTypes));
+//        }
         if (mTicketTypeEnum == TicketTypeEnum.Area) {
             return TicketTypeDataManager
                     .getTicketDataManager()
@@ -63,12 +63,12 @@ public class TicketTypeManager extends BaseGroupListManager<TicketType> {
                     .flatMap(ticketTypes -> translateToListData(ticketTypes));
         }
 
-        if (mTicketTypeEnum == TicketTypeEnum.Follow) {
-            return TicketTypeDataManager
-                    .getTicketDataManager()
-                    .getMyFollowData()
-                    .flatMap(ticketTypes -> translateToListData(ticketTypes));
-        }
+//        if (mTicketTypeEnum == TicketTypeEnum.Follow) {
+//            return TicketTypeDataManager
+//                    .getTicketDataManager()
+//                    .getMyFollowData()
+//                    .flatMap(ticketTypes -> translateToListData(ticketTypes));
+//        }
         return TicketTypeDataManager
                 .getTicketDataManager()
                 .getAllData()

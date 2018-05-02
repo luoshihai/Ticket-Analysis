@@ -35,10 +35,10 @@ public class MainActivity extends BaseFuncActivity {
 
     private List<Fragment> getFragmentList() {
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(MyFollowFragment.getNewInstance(TicketTypeEnum.Follow));
-        for (int i = 1; i < TicketTypeEnum.values().length; i++) {
+        for (int i = 0; i < TicketTypeEnum.values().length; i++) {
             fragmentList.add(TicketTypeFragment.getNewInstance(TicketTypeEnum.values()[i]));
         }
+//       fragmentList.add(MyFollowFragment.getNewInstance(TicketTypeEnum.Follow));
         return fragmentList;
     }
 
